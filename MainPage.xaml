@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="cbriscola.MainPage"
+             BackgroundImageSource="background.jpg">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Nuova Partita" Clicked="OnNuovaPartita_Click" />
+            <MenuFlyoutItem Text="Opzioni" Clicked="OnOpzioni_Click" />
+            <MenuFlyoutItem Text="Esci" Clicked="OnCancelFp_Click" />
+        </MenuBarItem>
+        <MenuBarItem Text="?">
+            <MenuFlyoutItem Text="Informazioni" Clicked="OnInfo_Click" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+       <Grid x:Name="Applicazione">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+        <Label x:Name="NomeUtente" Text="Nome Utente" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
+            <Image x:Name="n0" Source="n0.png" IsVisible="false"/>
+            <Image x:Name="n1" Source="n1.png" IsVisible="false"/>
+            <Image x:Name="n2" Source="n2.png" IsVisible="false"/>
+            <Image x:Name="n3" Source="n3.png" IsVisible="false"/>
+            <Image x:Name="n4" Source="n4.png" IsVisible="false"/>
+            <Image x:Name="n5" Source="n5.png" IsVisible="false"/>
+            <Image x:Name="n6" Source="n6.png" IsVisible="false"/>
+            <Image x:Name="n7" Source="n7.png" IsVisible="false"/>
+            <Image x:Name="n8" Source="n8.png" IsVisible="false"/>
+            <Image x:Name="n9" Source="n9.png" IsVisible="false"/>
+            <Image x:Name="n10" Source="n10.png" IsVisible="false"/>
+            <Image x:Name="n11" Source="n11.png" IsVisible="false"/>
+            <Image x:Name="n12" Source="n12.png" IsVisible="false"/>
+            <Image x:Name="n13" Source="n13.png" IsVisible="false"/>
+            <Image x:Name="n14" Source="n14.png" IsVisible="false"/>
+            <Image x:Name="n15" Source="n15.png" IsVisible="false"/>
+            <Image x:Name="n16" Source="n16.png" IsVisible="false"/>
+            <Image x:Name="n17" Source="n17.png" IsVisible="false"/>
+            <Image x:Name="n18" Source="n18.png" IsVisible="false"/>
+            <Image x:Name="n19" Source="n19.png" IsVisible="false"/>
+            <Image x:Name="n20" Source="n20.png" IsVisible="false"/>
+            <Image x:Name="n21" Source="n21.png" IsVisible="false"/>
+            <Image x:Name="n22" Source="n22.png" IsVisible="false"/>
+            <Image x:Name="n23" Source="n23.png" IsVisible="false"/>
+            <Image x:Name="n24" Source="n24.png" IsVisible="false"/>
+            <Image x:Name="n25" Source="n25.png" IsVisible="false"/>
+            <Image x:Name="n26" Source="n26.png" IsVisible="false"/>
+            <Image x:Name="n27" Source="n27.png" IsVisible="false"/>
+            <Image x:Name="n28" Source="n28.png" IsVisible="false"/>
+            <Image x:Name="n29" Source="n29.png" IsVisible="false"/>
+            <Image x:Name="n30" Source="n30.png" IsVisible="false"/>
+            <Image x:Name="n31" Source="n31.png" IsVisible="false"/>
+            <Image x:Name="n32" Source="n32.png" IsVisible="false"/>
+            <Image x:Name="n33" Source="n33.png" IsVisible="false"/>
+            <Image x:Name="n34" Source="n34.png" IsVisible="false"/>
+            <Image x:Name="n35" Source="n35.png" IsVisible="false"/>
+            <Image x:Name="n36" Source="n36.png" IsVisible="false"/>
+            <Image x:Name="n37" Source="n37.png" IsVisible="false"/>
+            <Image x:Name="n38" Source="n38.png" IsVisible="false"/>
+            <Image x:Name="n39" Source="n39.png" IsVisible="false"/>
+
+            <Image x:Name="Cpu0" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="0"/>
+            <Image x:Name="Cpu1" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="1"/>
+            <Image x:Name="Cpu2" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="2"/>
+
+        <Label x:Name="NomeCpu" Text="Nome COU" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
+        <Label x:Name="PuntiUtente" Text="Punti Utente" Grid.Row="0" Grid.Column="4"  TextColor="White"/>
+        <Label x:Name="PuntiCpu" Text="Punti della CPU" Grid.Row="1" Grid.Column="4"  TextColor="White"/>
+        <Label x:Name="NelMazzoRimangono" Text="Nel mazzo rimangono" Grid.Row="2" Grid.Column="4" TextColor="White" />
+        <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" TextColor="White" />
+        <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2"  TextColor="White"/>
+        </Grid>
+</ContentPage>
