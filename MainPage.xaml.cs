@@ -15,6 +15,7 @@ public partial class MainPage : ContentPage
     private static IDispatcherTimer t;
     private TapGestureRecognizer gesture;
     private elaboratoreCarteBriscola e;
+    private static bool aggiornaNomi = false;
     public MainPage()
     {
         this.InitializeComponent();
@@ -55,6 +56,13 @@ public partial class MainPage : ContentPage
         t.Tick += (s, e) =>
         {
             Informazioni.Text = "";
+            if (aggiornaNomi)
+            {
+                NomeUtente.Text = g.getNome();
+                NomeCpu.Text = cpu.getNome();
+                aggiornaNomi = false;
+            }
+
             c = primo.getCartaGiocata();
             c1 = secondo.getCartaGiocata();
             ((Image)this.FindByName(c.getID())).IsVisible = false;
@@ -236,5 +244,16 @@ public partial class MainPage : ContentPage
         giocaUtente(img);
         if (secondo == cpu)
             giocaCpu();
+    }
+
+    public static void AggiornaOpzioni()
+    {
+        g.setNome(Preferences.Get("nomeUtente", ""));
+        cpu.setNome(Preferences.Get("nomeCpu", ""));
+        secondi = (UInt16)Preferences.Get("secondi", 5);
+        avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
+        briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
+        t.Interval = TimeSpan.FromSeconds(secondi);
+        aggiornaNomi = true;
     }
 }

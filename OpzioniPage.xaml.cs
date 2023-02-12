@@ -46,7 +46,7 @@ public partial class OpzioniPage : ContentPage
             return;
         }
         Preferences.Set("secondi", secondi);
-
+        CBriscola2._0.AppShell.aggiorna = true;
         Navigation.PopAsync();
     }
 }
