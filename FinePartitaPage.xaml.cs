@@ -27,7 +27,7 @@ public partial class FinePartitaPage : ContentPage
                 s = "Hai perso";
             s = $"{s} per {Math.Abs(g.getPunteggio() - cpu.getPunteggio())} punti";
         }
-        Risultato.Text = $"La partita è finita. {s}. Vui giocarne un'altra?";
+        Risultato.Text = $"La partita è finita. {s}. Vuoi giocarne un'altra?";
 
     }
     private async void OnShare_Click(object sender, EventArgs e)
