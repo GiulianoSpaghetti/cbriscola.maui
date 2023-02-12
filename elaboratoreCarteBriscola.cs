@@ -1,16 +1,17 @@
 /*
- *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 2.0
+  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
+ *  CBriscola 1.1.3
  *
- *  Created by numerone on 28/01/23.
+ *  Created by Giulio Sorrentino (numerone) on 29/01/23.
  *  Copyright 2023 Some rights reserved.
  *
  */
 
 using System;
-namespace CBriscola
+namespace org.altervista.numerone.framework
+
 {
-	public class elaboratoreCarteBriscola : elaboratoreCarte
+    public class ElaboratoreCarteBriscola : ElaboratoreCarte
 	{
 		private const UInt16 numeroCarte = 40;
 		private bool[] doppione;
@@ -18,7 +19,7 @@ namespace CBriscola
 		private bool inizio,
 				 briscolaDaPunti;
 		public static Random r = new Random();
-		public elaboratoreCarteBriscola(bool punti = true)
+		public ElaboratoreCarteBriscola(bool punti = true)
 		{
 			inizio = true;
 			briscolaDaPunti = punti;
@@ -26,7 +27,7 @@ namespace CBriscola
 			for (int i = 0; i < 40; i++)
 				doppione[i] = false;
 		}
-		public UInt16 getCarta()
+		public UInt16 GetCarta()
 		{
 			UInt16 fine = (UInt16)(r.Next(0, 39) % numeroCarte),
 			Carta = (UInt16)((fine + 1) % numeroCarte);
@@ -44,7 +45,7 @@ namespace CBriscola
 						Carta = (UInt16)(Carta - valore + 1);
 					}
 					if (!briscolaDaPunti)
-						Carta = CartaHelperBriscola.getIstanza().getNumero(CartaHelperBriscola.getIstanza().getSeme(Carta), 1);
+						Carta = CartaHelperBriscola.GetIstanza(this).GetNumero(CartaHelperBriscola.GetIstanza(this).GetSeme(Carta), 1);
 					CartaBriscola = Carta;
 					inizio = false;
 				}
@@ -53,6 +54,6 @@ namespace CBriscola
 			}
 		}
 
-		public static UInt16 getCartaBriscola() { return CartaBriscola; }
+		public static UInt16 GetCartaBriscola() { return CartaBriscola; }
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace CBriscola2._0;
+﻿namespace TrumpSuitGame;
 
 public partial class AppShell : Shell
 {
@@ -13,7 +13,7 @@ public partial class AppShell : Shell
         if (current is "//Main")
             if (aggiorna)
             {
-                cbriscola.MainPage.AggiornaOpzioni();
+                MainPage.AggiornaOpzioni();
                 aggiorna = false;
             }
         base.OnNavigated(args);

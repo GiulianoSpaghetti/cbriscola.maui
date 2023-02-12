@@ -1,4 +1,4 @@
-﻿namespace CBriscola2._0;
+﻿namespace TrumpSuitGame;
 
 public partial class App : Application
 {

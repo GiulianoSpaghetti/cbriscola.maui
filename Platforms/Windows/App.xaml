@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="CBriscola2._0.WinUI.App"
+    x:Class="TrumpSuitGame.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:CBriscola2._0.WinUI">
+    xmlns:local="using:TrumpSuitGame.WinUI">
 
 </maui:MauiWinUIApplication>

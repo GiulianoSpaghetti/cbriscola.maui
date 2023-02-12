@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace CBriscola2._0;
+namespace TrumpSuitGame;
 
 public static class MauiProgram
 {

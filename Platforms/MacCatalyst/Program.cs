@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace CBriscola2._0;
+namespace TrumpSuitGame;
 
 public class Program
 {

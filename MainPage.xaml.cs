@@ -1,9 +1,6 @@
-﻿using CBriscola;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
-using System.Reflection;
+﻿using org.altervista.numerone.framework;
 
-namespace cbriscola;
+namespace TrumpSuitGame;
 
 public partial class MainPage : ContentPage
 {
@@ -14,7 +11,7 @@ public partial class MainPage : ContentPage
     private static bool avvisaTalloneFinito = true, briscolaDaPunti = false;
     private static IDispatcherTimer t;
     private TapGestureRecognizer gesture;
-    private elaboratoreCarteBriscola e;
+    private ElaboratoreCarteBriscola e;
     private static bool aggiornaNomi = false;
     public MainPage()
     {
@@ -23,33 +20,33 @@ public partial class MainPage : ContentPage
         avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
         secondi = (UInt16)Preferences.Get("secondi", 5);
 
-        e = new elaboratoreCarteBriscola(briscolaDaPunti);
+        e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
-        Carta.inizializza(40, CartaHelperBriscola.getIstanza());
-        g = new Giocatore(new GiocatoreHelperUtente(), Preferences.Get("nomeUtente", "Giulio"), 3);
-        cpu = new Giocatore(new GiocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), Preferences.Get("nomeCpu", "Cpu"), 3);
+        Carta.Inizializza(40, CartaHelperBriscola.GetIstanza(e));
+        g = new Giocatore(new GiocatoreHelperUtente(), Preferences.Get("nomeUtente", ""), 3);
+        cpu = new Giocatore(new GiocatoreHelperCpu(ElaboratoreCarteBriscola.GetCartaBriscola()), Preferences.Get("nomeCpu", ""), 3);
         primo = g;
         secondo = cpu;
-        briscola = Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
+        briscola = Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola());
         gesture = new TapGestureRecognizer();
         gesture.Tapped += Image_Tapped;
         for (UInt16 i = 0; i < 3; i++)
         {
-            g.addCarta(m);
-            cpu.addCarta(m);
+            g.AddCarta(m);
+            cpu.AddCarta(m);
 
         }
-        visualizzaImmagine(g.getID(0), 1, 0, true);
-        visualizzaImmagine(g.getID(1), 1, 1, true);
-        visualizzaImmagine(g.getID(2), 1, 2, true);
+        VisualizzaImmagine(g.GetID(0), 1, 0, true);
+        VisualizzaImmagine(g.GetID(1), 1, 1, true);
+        VisualizzaImmagine(g.GetID(2), 1, 2, true);
 
-        NomeUtente.Text = g.getNome();
-        NomeCpu.Text = cpu.getNome();
-        PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
-        visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+        NomeUtente.Text = g.GetNome();
+        NomeCpu.Text = cpu.GetNome();
+        PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
+        PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
+        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
+        CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
+        VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
         t.Interval = TimeSpan.FromSeconds(secondi);
@@ -58,66 +55,66 @@ public partial class MainPage : ContentPage
             Informazioni.Text = "";
             if (aggiornaNomi)
             {
-                NomeUtente.Text = g.getNome();
-                NomeCpu.Text = cpu.getNome();
+                NomeUtente.Text = g.GetNome();
+                NomeCpu.Text = cpu.GetNome();
                 aggiornaNomi = false;
             }
 
-            c = primo.getCartaGiocata();
-            c1 = secondo.getCartaGiocata();
-            ((Image)this.FindByName(c.getID())).IsVisible = false;
-            ((Image)this.FindByName(c1.getID())).IsVisible = false;
-            if ((c.CompareTo(c1) > 0 && c.stessoSeme(c1)) || (c1.stessoSeme(briscola) && !c.stessoSeme(briscola)))
+            c = primo.GetCartaGiocata();
+            c1 = secondo.GetCartaGiocata();
+            ((Image)this.FindByName(c.GetID())).IsVisible = false;
+            ((Image)this.FindByName(c1.GetID())).IsVisible = false;
+            if ((c.CompareTo(c1) > 0 && c.StessoSeme(c1)) || (c1.StessoSeme(briscola) && !c.StessoSeme(briscola)))
             {
                 temp = secondo;
                 secondo = primo;
                 primo = temp;
             }
 
-            primo.aggiornaPunteggio(secondo);
-            PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-            PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
+            primo.AggiornaPunteggio(secondo);
+            PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
+            PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
             if (aggiungiCarte())
             {
-                NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
-                CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
-                if (m.getNumeroCarte() == 0)
+                NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
+                CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
+                if (m.GetNumeroCarte() == 0)
                 {
-                    ((Image)this.FindByName(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID())).IsVisible = false;
+                    ((Image)this.FindByName(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
                         Informazioni.Text = "Il mazzo è finito";
                 }
-                for (UInt16 i = 0; i < g.getNumeroCarte(); i++)
+                for (UInt16 i = 0; i < g.GetNumeroCarte(); i++)
                 {
-                    visualizzaImmagine(g.getID(i), 1, i, true);
+                    VisualizzaImmagine(g.GetID(i), 1, i, true);
                     ((Image)this.FindByName("Cpu" + i)).IsVisible = true;
                 }
-                if (cpu.getNumeroCarte() == 2)
+                if (cpu.GetNumeroCarte() == 2)
                     Cpu2.IsVisible = false;
-                if (cpu.getNumeroCarte() == 1)
+                if (cpu.GetNumeroCarte() == 1)
                     Cpu1.IsVisible = false;
 
                 if (primo == cpu)
                 {
-                    giocaCpu();
-                    if (cpu.getCartaGiocata().stessoSeme(briscola))
-                        Informazioni.Text = $"La CPU ha giocato il {cpu.getCartaGiocata().getValore() + 1} di briscola";
-                    else if (cpu.getCartaGiocata().getPunteggio() > 0)
-                        Informazioni.Text = $"La cpu ha giocato il {cpu.getCartaGiocata().getValore() + 1} di {cpu.getCartaGiocata().getSemeStr()}";
+                    GiocaCpu();
+                    if (cpu.GetCartaGiocata().StessoSeme(briscola))
+                        Informazioni.Text = $"La CPU ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di briscola";
+                    else if (cpu.GetCartaGiocata().GetPunteggio() > 0)
+                        Informazioni.Text = $"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di {cpu.GetCartaGiocata().GetSemeStr()}";
                 }
 
             }
             else
             {
                 Navigation.PushAsync(new FinePartitaPage(g, cpu));
-                nuovaPartita();
+                NuovaPartita();
             }
             t.Stop();
         };
     }
 
-    private void visualizzaImmagine(String id, UInt16 i, UInt16 j, bool abilitaGesture)
+    private void VisualizzaImmagine(String id, UInt16 i, UInt16 j, bool abilitaGesture)
     {
         Image img;
         img = (Image)this.FindByName(id);
@@ -130,18 +127,18 @@ public partial class MainPage : ContentPage
             img.GestureRecognizers.Clear();
 
     }
-    private void giocaUtente(Image img)
+    private void GiocaUtente(Image img)
     {
         UInt16 quale = 0;
         Image img1;
-        for (UInt16 i = 1; i < g.getNumeroCarte(); i++)
+        for (UInt16 i = 1; i < g.GetNumeroCarte(); i++)
         {
-            img1 = (Image)this.FindByName(g.getID(i));
+            img1 = (Image)this.FindByName(g.GetID(i));
             if (img.Id == img1.Id)
                 quale = i;
         }
-        visualizzaImmagine(g.getID(quale), 2, 0, false);
-        g.gioca(quale);
+        VisualizzaImmagine(g.GetID(quale), 2, 0, false);
+        g.Gioca(quale);
     }
 
     private void OnInfo_Click(object sender, EventArgs e)
@@ -153,82 +150,74 @@ public partial class MainPage : ContentPage
     private void OnOpzioni_Click(object sender, EventArgs e)
     {
         Navigation.PushAsync(new OpzioniPage());
-        g.setNome(Preferences.Get("nomeUtente", "Giulio"));
-        cpu.setNome(Preferences.Get("nomeCpu", "Cpu"));
-        avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
-        briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);
-        secondi = (UInt16) Preferences.Get("secondi", 5);
-        t.Interval = TimeSpan.FromSeconds(secondi);
-        NomeUtente.Text = g.getNome();
-        NomeCpu.Text = cpu.getNome();
     }
 
-    private void nuovaPartita()
+    private void NuovaPartita()
     {
         Image img;
         for (UInt16 i=0; i<40; i++)
         {
-            img = (Image)this.FindByName(Carta.getCarta(i).getID());
+            img = (Image)this.FindByName(Carta.GetCarta(i).GetID());
             img.IsVisible = false;
             img.GestureRecognizers.Clear();
 
         }
-        e = new elaboratoreCarteBriscola(briscolaDaPunti);
+        e = new ElaboratoreCarteBriscola(briscolaDaPunti);
         m = new Mazzo(e);
-        briscola = Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola());
-        g = new Giocatore(new GiocatoreHelperUtente(), g.getNome(), 3);
-        cpu = new Giocatore(new GiocatoreHelperCpu(elaboratoreCarteBriscola.getCartaBriscola()), cpu.getNome(), 3);
+        briscola = Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola());
+        g = new Giocatore(new GiocatoreHelperUtente(), g.GetNome(), 3);
+        cpu = new Giocatore(new GiocatoreHelperCpu(ElaboratoreCarteBriscola.GetCartaBriscola()), cpu.GetNome(), 3);
         for (UInt16 i = 0; i < 3; i++)
         {
-            g.addCarta(m);
-            cpu.addCarta(m);
+            g.AddCarta(m);
+            cpu.AddCarta(m);
         }
-        visualizzaImmagine(g.getID(0), 1, 0, true);
-        visualizzaImmagine(g.getID(1), 1, 1, true);
-        visualizzaImmagine(g.getID(2), 1, 2, true);
+        VisualizzaImmagine(g.GetID(0), 1, 0, true);
+        VisualizzaImmagine(g.GetID(1), 1, 1, true);
+        VisualizzaImmagine(g.GetID(2), 1, 2, true);
 
         Cpu0.IsVisible = true;
         Cpu1.IsVisible = true;
         Cpu2.IsVisible = true;
-        PuntiCpu.Text = $"Punti di {cpu.getNome()}: {cpu.getPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.getNome()}: {g.getPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.getNumeroCarte()} carte";
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.getSemeStr()}";
+        PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
+        PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
+        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
+        CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
         NelMazzoRimangono.IsVisible = true;
         CartaBriscola.IsVisible = true;
         primo = g;
         secondo = cpu;
-        visualizzaImmagine(Carta.getCarta(elaboratoreCarteBriscola.getCartaBriscola()).getID(), 4, 4, false);
+        VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
 
     }
     private void OnNuovaPartita_Click(object sender, EventArgs evt)
     {
-        nuovaPartita();
+        NuovaPartita();
     }
     private void OnCancelFp_Click(object sender, EventArgs e)
     {
         Application.Current.Quit();
     }
 
-    private void giocaCpu()
+    private void GiocaCpu()
     {
         UInt16 quale = 0;
         Image img1 = Cpu0;
         if (primo == cpu)
-            cpu.gioca(0);
+            cpu.Gioca(0);
         else
-            cpu.gioca(0, g);
-        quale = cpu.getICartaGiocata();
+            cpu.Gioca(0, g);
+        quale = cpu.GetICartaGiocata();
         img1 = (Image)this.FindByName("Cpu" + quale);
         img1.IsVisible = false;
-        visualizzaImmagine(cpu.getCartaGiocata().getID(), 2, 2, false);
+        VisualizzaImmagine(cpu.GetCartaGiocata().GetID(), 2, 2, false);
     }
     private static bool aggiungiCarte()
     {
         try
         {
-            primo.addCarta(m);
-            secondo.addCarta(m);
+            primo.AddCarta(m);
+            secondo.AddCarta(m);
         }
         catch (IndexOutOfRangeException e)
         {
@@ -241,15 +230,15 @@ public partial class MainPage : ContentPage
     {
         Image img = (Image)Sender;
         t.Start();
-        giocaUtente(img);
+        GiocaUtente(img);
         if (secondo == cpu)
-            giocaCpu();
+            GiocaCpu();
     }
 
     public static void AggiornaOpzioni()
     {
-        g.setNome(Preferences.Get("nomeUtente", ""));
-        cpu.setNome(Preferences.Get("nomeCpu", ""));
+        g.SetNome(Preferences.Get("nomeUtente", ""));
+        cpu.SetNome(Preferences.Get("nomeCpu", ""));
         secondi = (UInt16)Preferences.Get("secondi", 5);
         avvisaTalloneFinito = Preferences.Get("avvisaTalloneFinito", true);
         briscolaDaPunti = Preferences.Get("briscolaDaPunti", false);

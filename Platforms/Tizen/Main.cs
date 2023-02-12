@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace CBriscola2._0;
+namespace TrumpSuitGame;
 
 class Program : MauiApplication
 {

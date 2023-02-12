@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace CBriscola2._0;
+namespace TrumpSuitGame;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

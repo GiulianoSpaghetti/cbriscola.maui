@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace CBriscola2._0;
+namespace TrumpSuitGame;
 
 [Application]
 public class MainApplication : MauiApplication

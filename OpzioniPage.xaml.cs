@@ -5,15 +5,16 @@
  *  Created by numerone on 28/01/23.
  *  Copyright 2023 Some rights reserved.
  *
- */namespace cbriscola;
+ */
+namespace TrumpSuitGame;
 
 public partial class OpzioniPage : ContentPage
 {
 	public OpzioniPage()
 	{
 		InitializeComponent();
-        txtNomeUtente.Text = Preferences.Get("nomeUtente", "Giulio");
-        txtCpu.Text = Preferences.Get("nomeCpu", "Cpu");
+        txtNomeUtente.Text = Preferences.Get("nomeUtente", "");
+        txtCpu.Text = Preferences.Get("nomeCpu", "");
         txtSecondi.Text = $"{(UInt16)Preferences.Get("secondi", 5)}";
         cbCartaBriscola.IsChecked = Preferences.Get("briscolaDaPunti", false);
         cbAvvisaTallone.IsChecked = Preferences.Get("avvisaTalloneFinito", true);
@@ -47,9 +48,9 @@ public partial class OpzioniPage : ContentPage
         }
         Preferences.Set("secondi", secondi);
 #if ANDROID
-        CBriscola2._0.AppShell.aggiorna = true;
+        TrumpSuitGame.AppShell.aggiorna = true;
 #elif WINDOWS
-        CBriscola2._0.AppShellWindows.aggiorna=true;
+        TrumpSuitGame.AppShellWindows.aggiorna=true;
 #endif
         Navigation.PopAsync();
     }

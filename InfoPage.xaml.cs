@@ -5,7 +5,8 @@
  *  Created by numerone on 28/01/23.
  *  Copyright 2023 Some rights reserved.
  *
- */namespace cbriscola;
+ */
+namespace TrumpSuitGame;
 
 public partial class InfoPage : ContentPage
 {
