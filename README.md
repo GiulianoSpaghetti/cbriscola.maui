@@ -3,7 +3,7 @@ La cbriscola che deve venire
 
 # Gameplay
 
-[![youtube](https://i.ibb.co/DQ2dNz9/mq2.jpg)](https://youtu.be/FeGiej59jGY)
+[![youtube](https://i.ibb.co/BKSRFmx/mqdefault.jpg)](https://youtu.be/f3I1MHikl2k)
 
 # Come installare
 
