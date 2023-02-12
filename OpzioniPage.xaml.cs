@@ -46,7 +46,11 @@ public partial class OpzioniPage : ContentPage
             return;
         }
         Preferences.Set("secondi", secondi);
+#if ANDROID
         CBriscola2._0.AppShell.aggiorna = true;
+#elif WINDOWS
+        CBriscola2._0.AppShellWindows.aggiorna=true;
+#endif
         Navigation.PopAsync();
     }
 }
