@@ -7,7 +7,7 @@
     <VerticalStackLayout>
         <Label Text="CBriscola versione 2.0" TextColor="White"/>
         <Label Text="Simulatore del gioco della briscola a due giocatori, senza multiplayer" TextColor="White"/>
-        <Label Text="Autore: Giulio Sorrentino"  TextColor="White"/>
+        <Label Text="ⓒ Giulio Sorrentino 2023"  TextColor="White"/>
         <Label Text="Licenza: GPLv3 o, scondo la tua opinione, qualsiasi versione successiva" TextColor="White" />
         <Label Text="Le immagini delle carte sono proprietà della Modiano."  TextColor="White"/>
         <Button Text="Maggiori informazioni" Clicked="OnSito_Click"  TextColor="White"/>
