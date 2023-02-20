@@ -47,11 +47,7 @@ public partial class OpzioniPage : ContentPage
             return;
         }
         Preferences.Set("secondi", secondi);
-#if ANDROID
         TrumpSuitGame.AppShell.aggiorna = true;
-#elif WINDOWS
-        TrumpSuitGame.AppShellWindows.aggiorna=true;
-#endif
-        Navigation.PopAsync();
+        Shell.Current.GoToAsync("//Main");
     }
 }

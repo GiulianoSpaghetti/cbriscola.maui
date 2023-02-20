@@ -3,17 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrumpSuitGame.MainPage"
              BackgroundImageSource="background.jpg">
-    <ContentPage.MenuBarItems>
-        <MenuBarItem Text="File">
-            <MenuFlyoutItem Text="Nuova Partita" Clicked="OnNuovaPartita_Click" />
-            <MenuFlyoutItem Text="Opzioni" Clicked="OnOpzioni_Click" />
-            <MenuFlyoutItem Text="Esci" Clicked="OnCancelFp_Click" />
-        </MenuBarItem>
-        <MenuBarItem Text="?">
-            <MenuFlyoutItem Text="Informazioni" Clicked="OnInfo_Click" />
-        </MenuBarItem>
-    </ContentPage.MenuBarItems>
-    <ContentPage.Content>
        <Grid x:Name="Applicazione">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -82,5 +71,4 @@
             <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" TextColor="White" />
             <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2"  TextColor="White"/>
         </Grid>
-    </ContentPage.Content>
 </ContentPage>
