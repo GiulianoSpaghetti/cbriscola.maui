@@ -1,4 +1,5 @@
-﻿using org.altervista.numerone.framework;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using org.altervista.numerone.framework;
 
 namespace TrumpSuitGame;
 
@@ -52,7 +53,6 @@ public partial class MainPage : ContentPage
         t.Interval = TimeSpan.FromSeconds(secondi);
         t.Tick += (s, e) =>
         {
-            Informazioni.Text = "";
             if (aggiornaNomi)
             {
                 NomeUtente.Text = g.GetNome();
@@ -83,7 +83,7 @@ public partial class MainPage : ContentPage
                     ((Image)this.FindByName(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
-                        Informazioni.Text = "Il mazzo è finito";
+                        new ToastContentBuilder().AddArgument("Il mazzo è finito").AddText("Il mazzo è finito").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                 }
                 for (UInt16 i = 0; i < g.GetNumeroCarte(); i++)
                 {
@@ -99,9 +99,9 @@ public partial class MainPage : ContentPage
                 {
                     GiocaCpu();
                     if (cpu.GetCartaGiocata().StessoSeme(briscola))
-                        Informazioni.Text = $"La CPU ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di briscola";
+                        new ToastContentBuilder().AddArgument("Giocata Briscola").AddText($"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di briscola").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                     else if (cpu.GetCartaGiocata().GetPunteggio() > 0)
-                        Informazioni.Text = $"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di {cpu.GetCartaGiocata().GetSemeStr()}";
+                        new ToastContentBuilder().AddArgument("Giocata Carta di valore").AddText($"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di {cpu.GetCartaGiocata().GetSemeStr()}").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                 }
 
             }

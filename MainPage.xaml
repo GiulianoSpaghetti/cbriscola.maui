@@ -64,11 +64,10 @@
             <Image x:Name="Cpu1" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="1"/>
             <Image x:Name="Cpu2" Source="retro_carte_pc.png" Grid.Row="3" Grid.Column="2"/>
 
-            <Label x:Name="NomeCpu" Text="Nome COU" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
+            <Label x:Name="NomeCpu" Text="Nome CPU" Grid.Row="4" Grid.Column="0" Grid.RowSpan="3"  TextColor="White"/>
             <Label x:Name="PuntiUtente" Text="Punti Utente" Grid.Row="0" Grid.Column="4"  TextColor="White"/>
             <Label x:Name="PuntiCpu" Text="Punti della CPU" Grid.Row="1" Grid.Column="4"  TextColor="White"/>
             <Label x:Name="NelMazzoRimangono" Text="Nel mazzo rimangono" Grid.Row="2" Grid.Column="4" TextColor="White" />
             <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" TextColor="White" />
-            <Label x:Name="Informazioni" Grid.Row="5" Grid.Column="2"  TextColor="White"/>
         </Grid>
 </ContentPage>
