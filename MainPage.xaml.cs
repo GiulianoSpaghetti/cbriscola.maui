@@ -43,10 +43,10 @@ public partial class MainPage : ContentPage
 
         NomeUtente.Text = g.GetNome();
         NomeCpu.Text = cpu.GetNome();
-        PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
+        PuntiCpu.Text = $"{cpu.GetNome()} points: {cpu.GetPunteggio()}";
+        PuntiUtente.Text = $"{g.GetNome()} points: {g.GetPunteggio()}";
+        NelMazzoRimangono.Text = $"There are {m.GetNumeroCarte()} cards in the deck";
+        CartaBriscola.Text = $"The trump seed is: {briscola.GetSemeStr()}";
         VisualizzaImmagine(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID(), 4, 4, false);
 
         t = Dispatcher.CreateTimer();
@@ -72,18 +72,18 @@ public partial class MainPage : ContentPage
             }
 
             primo.AggiornaPunteggio(secondo);
-            PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
-            PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
+            PuntiCpu.Text = $"{cpu.GetNome()} points: {cpu.GetPunteggio()}";
+            PuntiUtente.Text = $"{g.GetNome()} points: {g.GetPunteggio()}";
             if (aggiungiCarte())
             {
-                NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
-                CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
+                NelMazzoRimangono.Text = $"There are {m.GetNumeroCarte()} cards in the deck";
+                CartaBriscola.Text = $"The trump seed is: {briscola.GetSemeStr()}";
                 if (m.GetNumeroCarte() == 0)
                 {
                     ((Image)this.FindByName(Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola()).GetID())).IsVisible = false;
                     NelMazzoRimangono.IsVisible = false;
                     if (avvisaTalloneFinito)
-                        new ToastContentBuilder().AddArgument("Il mazzo è finito").AddText("Il mazzo è finito").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
+                        new ToastContentBuilder().AddArgument("The deck is finished").AddText("The deck is finished").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                 }
                 for (UInt16 i = 0; i < g.GetNumeroCarte(); i++)
                 {
@@ -99,9 +99,9 @@ public partial class MainPage : ContentPage
                 {
                     GiocaCpu();
                     if (cpu.GetCartaGiocata().StessoSeme(briscola))
-                        new ToastContentBuilder().AddArgument("Giocata Briscola").AddText($"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di briscola").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
+                        new ToastContentBuilder().AddArgument("Briscola played").AddText($"The CPU has played the {cpu.GetCartaGiocata().GetValore() + 1} of Briscola").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                     else if (cpu.GetCartaGiocata().GetPunteggio() > 0)
-                        new ToastContentBuilder().AddArgument("Giocata Carta di valore").AddText($"La cpu ha giocato il {cpu.GetCartaGiocata().GetValore() + 1} di {cpu.GetCartaGiocata().GetSemeStr()}").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
+                        new ToastContentBuilder().AddArgument("Card with value gamed").AddText($"The CPU has played the {cpu.GetCartaGiocata().GetValore() + 1} of {cpu.GetCartaGiocata().GetSemeStr()}").AddAudio(new Uri("ms-winsoundevent:Notification.Reminder")).Show();
                 }
 
             }
@@ -179,10 +179,10 @@ public partial class MainPage : ContentPage
         Cpu0.IsVisible = true;
         Cpu1.IsVisible = true;
         Cpu2.IsVisible = true;
-        PuntiCpu.Text = $"Punti di {cpu.GetNome()}: {cpu.GetPunteggio()}";
-        PuntiUtente.Text = $"Punti di {g.GetNome()}: {g.GetPunteggio()}";
-        NelMazzoRimangono.Text = $"Nel mazzo rimangono {m.GetNumeroCarte()} carte";
-        CartaBriscola.Text = $"Il seme di briscola è: {briscola.GetSemeStr()}";
+        PuntiCpu.Text = $"{cpu.GetNome()} points: {cpu.GetPunteggio()}";
+        PuntiUtente.Text = $"{g.GetNome()} points: {g.GetPunteggio()}";
+        NelMazzoRimangono.Text = $"There are {m.GetNumeroCarte()} cards in the deck";
+        CartaBriscola.Text = $"The trump seed is: {briscola.GetSemeStr()}";
         NelMazzoRimangono.IsVisible = true;
         CartaBriscola.IsVisible = true;
         primo = g;

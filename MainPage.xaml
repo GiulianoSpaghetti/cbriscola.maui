@@ -2,8 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrumpSuitGame.MainPage"
-             BackgroundImageSource="background.jpg">
-       <Grid x:Name="Applicazione">
+             BackgroundColor="green">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New Game" Clicked="OnNuovaPartita_Click" />
+            <MenuFlyoutItem Text="Opions" Clicked="OnOpzioni_Click" />
+            <MenuFlyoutItem Text="Exit" Clicked="OnCancelFp_Click" />
+        </MenuBarItem>
+        <MenuBarItem Text="?">
+            <MenuFlyoutItem Text="Informations" Clicked="OnInfo_Click" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <ContentPage.Content>
+    <Grid x:Name="Applicazione">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -70,4 +81,5 @@
             <Label x:Name="NelMazzoRimangono" Text="Nel mazzo rimangono" Grid.Row="2" Grid.Column="4" TextColor="White" />
             <Label x:Name="CartaBriscola" Text="Il seme di briscola è" Grid.Row="3" Grid.Column="4" TextColor="White" />
         </Grid>
+    </ContentPage.Content>
 </ContentPage>

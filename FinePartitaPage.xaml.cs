@@ -20,21 +20,21 @@ public partial class FinePartitaPage : ContentPage
         this.g=g; this.cpu=cpu;
 		InitializeComponent();
         if (g.GetPunteggio() == cpu.GetPunteggio())
-            s = "La partita è patta";
+            s = "Gam is drown";
         else
         {
             if (g.GetPunteggio() > cpu.GetPunteggio())
-                s = "Hai vinto";
+                s = "You win";
             else
-                s = "Hai perso";
-            s = $"{s} per {Math.Abs(g.GetPunteggio() - cpu.GetPunteggio())} punti";
+                s = "You loose";
+            s = $"{s} for {Math.Abs(g.GetPunteggio() - cpu.GetPunteggio())} points";
         }
-        Risultato.Text = $"La partita è finita. {s}. Vuoi giocarne un'altra?";
+        Risultato.Text = $"The game is over. {s}. Do you want to play again?";
 
     }
     private async void OnShare_Click(object sender, EventArgs e)
     {
-        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=Con%20Cbriscola%202.0%20il%20match%20{g.GetNome()}%20contro%20{cpu.GetNome()}%20è%20finito%20{g.GetPunteggio()}%20a%20{cpu.GetPunteggio()}%20su%20piattaforma%20Windows%20NT%203.51%20con%20mazzo%20Napoletano&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
+        await Launcher.Default.OpenAsync(new Uri($"https://twitter.com/intent/tweet?text=With%20the%20Trump%20Suit%20Game%20the%20match%20{g.GetNome()}%20versus%20{cpu.GetNome()}%20is%20finishd%20{g.GetPunteggio()}%20at%20{cpu.GetPunteggio()}%20on%20platorm%20Windows%20NT%20with%20Neapolitan%20Deck&url=https%3A%2F%2Fgithub.com%2Fnumerunix%2Fcbriscola.maui"));
         Condividi.IsEnabled = false;
     }
 

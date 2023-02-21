@@ -43,10 +43,10 @@ namespace org.altervista.numerone.framework
 		public string GetSemeStr(UInt16 Carta) {
 			string s = "a";
 			switch (Carta / 10) {
-                case 0: s = "bastoni"; break;
-                case 1: s = "coppe"; break;
-                case 2: s = "denari"; break;
-                case 3: s = "spade"; break;
+                case 0: s = "Stick"; break;
+                case 1: s = "Cups"; break;
+                case 2: s = "Denier"; break;
+                case 3: s = "Swords"; break;
             }
             return s;
 		}
