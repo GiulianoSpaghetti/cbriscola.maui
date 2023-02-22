@@ -1,5 +1,6 @@
 # cbriscola.maui
-La cbriscola che deve venire
+La cbriscola che, alla fine, è arrivata.
+Su google è localizzata in 6 differenti linguaggi, su windows è localizzata solo in inglese.
 
 # Gameplay
 
