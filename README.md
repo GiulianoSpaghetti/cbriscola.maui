@@ -1,6 +1,6 @@
 # cbriscola.maui
 La cbriscola che, alla fine, è arrivata.
-Su google è localizzata in 6 differenti linguaggi, su windows è localizzata solo in inglese.
+E' stata aggiornata per girare solo su windows.
 
 # Donazione
 https://numerone.altervista.org/donazioni.php
